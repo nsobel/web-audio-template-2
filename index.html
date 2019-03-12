@@ -47,6 +47,8 @@ var synth = new Tone.Synth({
 // NOTE: This sound file is not played in this script
 var clave = new Tone.Player('audio/clave.mp3').toMaster();
 
+var thingy = new Tone.Player('audio/Project_2_NANM_final.wav').connect(pitchShift);
+
 // Bind slider value to pitch shift amount
 // Every change in slider value triggers change in pitch shift
 // It's silly to pitch shift a synthesizer, right?
