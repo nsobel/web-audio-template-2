@@ -1,5 +1,5 @@
-<!-- This is a comment in HTML -->
-<!DOCTYPE html>
+00 m,n0 <!-- This is a comment in HTML -->
+<!DOCTY m,0nPE html>
 <html lang="en-US" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -16,6 +16,7 @@
   <h2>Click the buttons to make (or stop) some sound:</h2>
   <button id="playButton" class="btn-transport" type="button">play</button>
   <button id="stopButton" class="btn-transport" type="button">stop</button>
+  <button id="transportButton" class="btn-transport" type="button">start or stop transport</button>
   <fieldset>
     <legend>Use slider to control pitch shift</legend>
     <label id="pitchShiftLabel" for="pitchShiftSlider">0</label>
@@ -74,8 +75,30 @@ document.querySelector('#playButton').onclick = function() {
 document.querySelector('#stopButton').onclick = function() {
   console.log('The stop button has been clicked.');
 
-  // Stop the note from sounding
-  synth.triggerRelease();
+  // Stop the loop from sounding
+loop.stop();
+};
+
+//create a loop
+var loop = new Tone.Loop(function(time){
+	synth.triggerAttackRelease("C1", "8n", time)
+}, "4n");
+
+//play the loop between 0-2m on the transport
+loop.start(0)
+
+// The following block of code will run when the transport button is clicked
+document.querySelector('#playButton').onclick = function() {
+  console.log('The play button has been clicked.'); };
+
+document.querySelector('transportButton').onclick = function() {
+    console.log('The transprot button has been clicked.');
+
+     //Start the audio context
+     Tone.context.resume();
+
+     // Start or stop transport
+     Tone.Transport.toggle();
 };
 
 </script>
