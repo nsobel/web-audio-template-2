@@ -1,5 +1,5 @@
-00 m,n0 <!-- This is a comment in HTML -->
-<!DOCTY m,0nPE html>
+ <!-- This is a comment in HTML -->
+<!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -17,6 +17,7 @@
   <button id="playButton" class="btn-transport" type="button">play</button>
   <button id="stopButton" class="btn-transport" type="button">stop</button>
   <button id="transportButton" class="btn-transport" type="button">start or stop transport</button>
+  <button id="tryitButton" class="btn-transport" type="button">try it</button>
   <fieldset>
     <legend>Use slider to control pitch shift</legend>
     <label id="pitchShiftLabel" for="pitchShiftSlider">0</label>
@@ -84,6 +85,15 @@ var loop = new Tone.Loop(function(time){
 	synth.triggerAttackRelease("C1", "8n", time)
 }, "4n");
 
+var synthA = new Tone.Synth({
+  oscillator: {
+    type: 'fmsquare',
+    modulationType: 'sawtooth',
+    modulationIndex: 0,
+    harmonicity: 10
+  }
+}).toMaster();
+
 //play the loop between 0-2m on the transport
 loop.start(0)
 
@@ -91,8 +101,10 @@ loop.start(0)
 document.querySelector('#playButton').onclick = function() {
   console.log('The play button has been clicked.'); };
 
-document.querySelector('transportButton').onclick = function() {
-    console.log('The transprot button has been clicked.');
+document.querySelector('#transportButton').onclick = function() {
+    console.log('The transport button has been clicked.');
+
+
 
      //Start the audio context
      Tone.context.resume();
@@ -100,6 +112,16 @@ document.querySelector('transportButton').onclick = function() {
      // Start or stop transport
      Tone.Transport.toggle();
 };
+
+document.querySelector('#tryitButton').onclick = function() {
+    console.log('The try it button has been clicked.');
+
+    synthA.triggerAttackRelease('D4','4n')
+
+};
+
+//synth.oscillator.partials = [1st partial amplitude, 2nd partial amplitude, ...]
+//synthA.volume.value = #
 
 </script>
 
