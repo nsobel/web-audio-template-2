@@ -88,11 +88,17 @@ var loop = new Tone.Loop(function(time){
 var synthA = new Tone.Synth({
   oscillator: {
     type: 'fmsquare',
-    modulationType: 'sawtooth',
+    modulationType: 'triangle',
     modulationIndex: 0,
-    harmonicity: 10
+    harmonicity: 0
+  },
+  envelope: {
+    attack: 0.001,
+    decay: 0.1,
+    sustain: 0.1,
+    release: 0.1
   }
-}).toMaster();
+}).toMaster()
 
 //play the loop between 0-2m on the transport
 loop.start(0)
