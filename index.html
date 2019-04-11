@@ -93,9 +93,9 @@ var synthA = new Tone.Synth({
     harmonicity: 0
   },
   envelope: {
-    attack: 0.001,
+    attack: 0.01,
     decay: 0.1,
-    sustain: 0.1,
+    sustain: 0.9,
     release: 0.1
   }
 }).toMaster()
@@ -119,12 +119,17 @@ document.querySelector('#transportButton').onclick = function() {
      Tone.Transport.toggle();
 };
 
-document.querySelector('#tryitButton').onclick = function() {
-    console.log('The try it button has been clicked.');
+document.querySelector('#tryitButton').addEventListener('mousedown', function() {
 
-    synthA.triggerAttackRelease('D4','4n')
+    synthA.triggerAttack('D4')
+    synthA.volume.value = -20
 
-};
+});
+
+document.querySelector('#tryitButton').addEventListener('mouseup', function() {
+
+    synthA.triggerRelease()
+})
 
 //synth.oscillator.partials = [1st partial amplitude, 2nd partial amplitude, ...]
 //synthA.volume.value = #
