@@ -14,10 +14,24 @@
 
 <main>
   <h2>Click the buttons to make (or stop) some sound:</h2>
-  <button id="playButton" class="btn-transport" type="button">play</button>
-  <button id="stopButton" class="btn-transport" type="button">stop</button>
-  <button id="transportButton" class="btn-transport" type="button">start or stop transport</button>
   <button id="tryitButton" class="btn-transport" type="button">try it</button>
+  <button id="playButton" class="btn-transport" type="button">Loop 1</button>
+    <button id="stopButton" class="btn-transport" type="button">Loop 2</button>
+    <button id="transportButton" class="btn-transport" type="button">Loop 3</button>
+    <button id="playButton" class="btn-transport" type="button">C</button>
+    <button id="stopButton" class="btn-transport" type="button">C#/Db</button>
+    <button id="transportButton" class="btn-transport" type="button">D</button>
+    <button id="playButton2" class="btn-transport" type="button">D#/Eb</button>
+    <button id="playButton2" class="btn-transport" type="button">E</button>
+    <button id="playButton2" class="btn-transport" type="button">F</button>
+    <button id="playButton2" class="btn-transport" type="button">F#/Gb</button>
+    <button id="playButton2" class="btn-transport" type="button">G</button>
+    <button id="playButton2" class="btn-transport" type="button">G#/Ab</button>
+    <button id="playButton2" class="btn-transport" type="button">A</button>
+    <button id="playButton2" class="btn-transport" type="button">A#/Bb</button>
+    <button id="playButton2" class="btn-transport" type="button">A#/Bb</button>
+    <button id="playButton2" class="btn-transport" type="button">B</button>
+    <button id="playButton2" class="btn-transport" type="button">Hi C</button>
   <fieldset>
     <legend>Use slider to control pitch shift</legend>
     <label id="pitchShiftLabel" for="pitchShiftSlider">0</label>
@@ -119,17 +133,27 @@ document.querySelector('#transportButton').onclick = function() {
      Tone.Transport.toggle();
 };
 
-document.querySelector('#tryitButton').addEventListener('mousedown', function() {
+document.addEventListener('keydown', PlayIt);
 
-    synthA.triggerAttack('D4')
-    synthA.volume.value = -20
+function PlayIt(e) {
+    console.log(e.code);
+    if (e.code == 'KeyD') {
+      synthA.triggerAttack('D4');
+      synthA.volume.value = -20;
+    }}
 
-});
 
-document.querySelector('#tryitButton').addEventListener('mouseup', function() {
+document.addEventListener('keyup', StopIt);
 
-    synthA.triggerRelease()
-})
+function StopIt(e) {
+    console.log(e.code);
+    if (e.code == 'KeyD') {
+      synthA.triggerRelease();
+    }}
+
+
+
+
 
 //synth.oscillator.partials = [1st partial amplitude, 2nd partial amplitude, ...]
 //synthA.volume.value = #
